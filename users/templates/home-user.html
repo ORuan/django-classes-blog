@@ -1,0 +1,42 @@
+{% extends 'blog/base.html' %} {% load bootstrap %} {% block content %}
+
+<form method="POST" >
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-6 mb-3">
+            <label for="" class="form-label">Nome</label> {{form.first_name | addClass:'form-control'}} {{ form.first_name.help_text }}
+        </div>
+        <div class="col-6 mb-3">
+            <label for="" class="form-label">Sobrenome</label> {{form.last_name |addClass:'form-control'}} {{ form.last_name.help_text }}
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Username</label> {{form.username | addClass:'form-control' }} {{form.username.help_text }}
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Email</label> {{form.email | addClass:'form-control'}} {{form.email.help_text }}
+        <div id="emailHelp" class="form-text">Nós não iremos compartilhar o seu email.</div>
+    </div>
+    <div class="row">
+        <div class="col-6 mb-3">
+            <label for="" class="form-label">Senha</label> {{form.password1 | addClass:'form-control'}}
+        </div>
+        <div class="col-6 mb-3">
+            <label for="" class="form-label">Confirma Senha</label> {{form.password2 |addClass:'form-control'}} 
+        </div>
+    </div>
+
+    {% if form.errors %}
+    <div class="row">
+        <div class="col-12 mb-3">
+            <div class="alert alert-danger" role="alert">
+                <span>{{form.errors }}</span>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+{% endblock content %}
