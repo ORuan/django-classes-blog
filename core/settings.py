@@ -7,7 +7,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # CRITIC CREDENCIALS
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG') == 'True'
-ALLOWED_HOSTS = os.environ.get('HOSTS').split(' ')
+
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = os.environ.get('HOSTS').split(' ')
 
 
 INSTALLED_APPS = [
