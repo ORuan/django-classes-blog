@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+{% load bootstrap %}
+{% block content %}
+
+<h1 class="text-center m-3">Login</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Username</label>
+        {{ form.username | addClass:'form-control'}}
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        {{ form.password | addClass:'form-control'}}
+    </div>
+
+    <small>
+        <p class="text-left">
+            Esqueceu a senha? 
+            <a href="/auth/password_reset/">
+                Clique aqui
+            </a>
+        </p>
+    </small>
+    <button type="submit" class="btn btn-primary"><strong>Log In</strong></button>
+</form>
+
+
+{% endblock %}

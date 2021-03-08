@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load bootstrap %}
+{% block content %}
+
+<!--Esse curso deve ensinar o jovem a fazer APIS-->
+<form method="POST" >
+    <h1 class="text-center m-3">Deletar Postagem</h1>
+
+    <div class="row">
+        <div class="col-12 mb-3">
+            <div class="alert alert-dark" role="alert">
+                <h4 class="text-center">Cuidado</h4>
+                <span>Sua Postagem será apagada, deseja seguir?</span>
+            </div>
+        </div>
+    </div>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Deletar</button>
+</form>
+
+
+
+{% endblock %}

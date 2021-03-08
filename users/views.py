@@ -31,3 +31,4 @@ class UserViewDelete(View):
     def post(self, request, *args):
         User.objects.get(id=request.user.id).delete()
         return HttpResponseRedirect('/')
+

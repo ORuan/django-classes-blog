@@ -1,13 +1,24 @@
-{% extends 'blog/base.html' %} {% block content %} {% for post in posts %}
+{% extends 'blog/base.html' %}
+{% block content %}
+{% for post in object_list %}
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2" href="#">{{ post.author }}</a>
             <small class="text-muted">{{ post.date_posted|date:"D d M Y" }}</small>
         </div>
-        <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+        <h2>
+            <a class="article-title" href="#">{{ post.title }}</a>
+        </h2>
         <p class="article-content">{{ post.content }}</p>
+        {% if request.user.is_authenticated %}
+            {% if request.user.id == post.author.id %}
+                <a class="btn btn-primary btn-sm" href="{% url 'blog:blog-view-update' post.pk %}" role="button">Editar POST</a>
+                <a class="btn btn-primary btn-sm" href="{% url 'blog:blog-view-delete' post.pk %}" role="button">Apagar POST</a>
+            {% endif%}
+        {% endif%}
     </div>
 </article>
 
-{% endfor %} {% endblock content %}
+{% endfor %}
+{% endblock content %}
