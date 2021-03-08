@@ -16,7 +16,15 @@
         <label for="exampleInputPassword1">Conteúdo</label>
         {{ form.content | addClass:'form-control'}}
     </div>
-
+    {% if form.errors %}
+    <div class="row">
+        <div class="col-12 mb-3">
+            <div class="alert alert-danger" role="alert">
+                <span>{{form.errors }}</span>
+            </div>
+        </div>
+    </div>
+    {% endif %}
     <button type="submit" class="btn btn-primary"><strong>Enviar</strong></button>
 </form>
 

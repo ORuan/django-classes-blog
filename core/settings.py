@@ -89,6 +89,7 @@ USE_TZ = True
 
 #Auth urls
 LOGIN_URL = "/auth/login/"
+LOGIN_REDIRECT_URL="/"
 
 #Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
