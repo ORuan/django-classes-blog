@@ -4,7 +4,7 @@ from blog.models import Post
 from django.views.generic import CreateView, DeleteView, UpdateView, ListView
 from blog.forms import PostForm
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound, HttpResponse
 
 class BlogViewList(ListView):
     model = Post
@@ -38,8 +38,15 @@ class BlogViewDelete(View):
     template_name = "form/form-delete-post.html"
     #, {'post':Post.objects.get(id=0)}
     def get(self, request, id, *args):
-        return render(request,  self.template_name)
-
+        post = Post.objects.get(id=id)
+        if request.user.id == post.author.id: 
+            return render(request,  self.template_name)
+        else:
+            return HttpResponseNotFound('ERROR')
     def post(self, request, id, *args):
-        Post.objects.get(id=id).delete()
-        return HttpResponseRedirect('/')
+        post = Post.objects.get(id=id)
+        if request.user.id == post.author.id: 
+            post.delete()
+            return HttpResponseRedirect('/')
+        else:
+            return HttpResponse('<h1 class="text-center">Coe meno, não pode fazer isso</h1>')
