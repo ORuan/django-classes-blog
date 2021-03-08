@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # CRITIC CREDENCIALS
 SECRET_KEY = os.environ.get('SECRET_KEY')
 #DEBUG = os.environ.get('DEBUG') == 'True'
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
